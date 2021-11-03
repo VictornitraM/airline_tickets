@@ -15,16 +15,20 @@
 
     <b-row>
       <b-col md="12">
-        <h2>Airline Ticket - Live UI Updates</h2>
+        <h1>Airline Ticket - Live UI Updates</h1>
       </b-col>
     </b-row>
+    <b-row><b-col md="12" class="spacer"></b-col></b-row>
     <b-row>
-      <b-col md="2"></b-col>
-      <b-col md="4">
-        <div id="inputs">
+      
+      <b-col class="order-last order-sm-first" offset-md="2" md="4">
+        <b-row class="mt-4">
+          <h2>Configure</h2>
+        </b-row>
+        <div class="configure mt-4" id="inputs">
           <b-row>
             <b-col md="6">
-              <label for="colorPicker">Pick a new header color</label>
+              <label for="colorPicker"><b>Pick a header color</b></label>
               <b-form-input
                 id="colorPicker"
                 type="color"
@@ -35,7 +39,7 @@
             </b-col>
 
             <b-col md="6">
-              <label for="fontColorPicker">Pick a new font color</label>
+              <label for="fontColorPicker"><b>Pick a font color</b></label>
               <b-form-input
                 id="fontColorPicker"
                 type="color"
@@ -48,7 +52,7 @@
 
           <b-row class="mt-4">
             <b-col md="12">
-              <label for="nameInput">Change the passengers name:</label>
+              <label for="nameInput"><b>Change the passengers name:</b></label>
               <b-form-input
                 v-model="passengerName"
                 id="nameInput"
@@ -58,40 +62,41 @@
           </b-row>
           <b-row class="mt-4">
             <b-col md="12">
-              <label for="fontSize-p"
-                >Label font size (e.g. "Flight", "Gate")</label
-              >
+              <label for="fontSize-p"><b>Label Font Size: &nbsp;</b> {{ valueSpan }}</label>
               <b-form-input
                 v-model="valueSpan"
                 id="fontSize-p"
                 type="range"
                 name="vol1"
-                min="13"
+                min="7"
                 max="20"
                 step="1"
+                style="width:100%"
               ></b-form-input>
-              <div>Value: {{ valueSpan }}</div>
+              <small class="form-text text-muted">(e.g. "Flight", "Gate")</small>
+              
             </b-col>
+          </b-row>
+          <b-row class="mt-4">
             <b-col md="12">
-              <label for="fontSize-span"
-                >Info font size (e.g. "AA2005", "B3")</label
-              >
+              <label for="fontSize-span"><b>Info Font Size:</b> &nbsp; {{ valueP }}</label>
               <b-form-input
                 v-model="valueP"
                 id="fontSize-span"
                 type="range"
                 name="vol2"
-                min="11"
+                min="7"
                 max="20"
                 step="1"
+                style="width:100%"
               ></b-form-input>
-              <div>Value: {{ valueP }}</div>
+              <small class="form-text text-muted">(e.g. "AA2005", "B3")</small>
             </b-col>
           </b-row>
         </div>
       </b-col>
 
-      <b-col md="4">
+      <b-col class="ticket-container" md="4">
         <div class="ticket airline">
           <div class="top">
             <h1>boarding pass</h1>
@@ -126,7 +131,6 @@
           </div>
         </div>
       </b-col>
-      <b-col md="2"></b-col>
     </b-row>
     <div class="info">
       <p>
@@ -168,6 +172,25 @@ $bottombg: #fff;
 $font: "Open Sans", sans-serif;
 $grey: #6c6c6c;
 
+.spacer{
+  height: 100px;
+}
+
+.configure{
+  background: white;
+  border-radius: 25px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  padding:30px;
+}
+
+.ticket-container{
+  width:100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 body,
 p,
 h1,
@@ -176,6 +199,10 @@ h2 {
   padding: 0;
   font-family: $font;
   text-align: center;
+}
+
+h1, h2{
+  font-weight:600!important;
 }
 
 body {
@@ -189,9 +216,9 @@ body {
   height: 100vh;
   .ticket {
     position: relative;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    //top: 50%;
+    //left: 50%;
+    //transform: translate(-50%, -50%);
   }
   .basic {
     display: none;
@@ -279,6 +306,9 @@ body {
     font-size: calc(var(--font-size-p) * 1px);
     font-weight: 700;
     color: var(--font-color);
+    padding-left:6px;
+    padding-right:6px;
+    text-align: left;
     span {
       font-weight: 400;
       font-size: calc(var(--font-size-span) * 1px);
@@ -295,12 +325,16 @@ body {
     justify-content: space-between;
     &--right {
       text-align: right;
+      padding-left:6px;
+      padding-right:6px;
     }
     &--center {
       text-align: center;
+      padding-left:6px;
+      padding-right:6px;
     }
     &-2 {
-      margin: 30px 0 60px 0;
+      margin: 20px 0 50px 0;
       position: relative;
       &::after {
         content: "";
