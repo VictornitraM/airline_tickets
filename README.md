@@ -1,4 +1,4 @@
-# airline_tickets
+# VUEJS Assessment
 
 ## Project setup
 ```
